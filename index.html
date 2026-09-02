@@ -66,9 +66,12 @@
         }
 
         body {
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+    overflow-x: hidden; /* Запрещает сайту двигаться вбок на смартфонах */
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+    position: relative;
+	}
+
 
         body.modal-open {
             overflow: hidden; /* Защита от прокрутки фона при открытых формах */
@@ -520,21 +523,34 @@
         .direction-card:hover .card-bottom-link::after {
             padding-left: 5px;
         }
-
-        /* Умные мобильные аккордеоны */
+        /* Умные мобильные аккордеоны (ИСПРАВЛЕНО: Защита от синего цвета и переносы) */
         .accordion-trigger {
             display: none;
             width: 100%;
-            padding: 24px 30px;
+            padding: 20px 24px; /* Чуть уменьшили отступы, чтобы тексту было просторнее */
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             margin-bottom: 15px;
             text-align: left;
             font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
+            font-size: 1rem; /* Оптимальный журнальный размер под экраны смартфонов */
             letter-spacing: 1px;
             justify-content: space-between;
             align-items: center;
+            
+            /* ЖЕСТКАЯ ЗАЩИТА: Намертво привязываем цвет графита, никаких синих браузерных цветов */
+            color: var(--text-color) !important; 
+            text-decoration: none !important;
+            
+            /* Смарт-инженерия: перенос длинных слов без вылезания букв за границы экрана */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        /* Дополнительное правило, которое вычищает дефолтную синеву из любых внутренних элементов плашки */
+        .accordion-trigger * {
+            color: var(--text-color) !important;
         }
 
         .accordion-trigger span::after {
@@ -1292,7 +1308,7 @@
                 <span class="hero-geo">Уютная студия в центре Ярославля</span>
                 <h1>Студия фитнеса и стретчинга</h1>
                 <p>Индивидуальные занятия и mini-группы, программа под твои цели. Тренируйся с комфортом — завтра скажешь себе «спасибо» 🤎.</p>
-                <button class="btn-gold open-modal-btn">Записаться на коврик</button>
+                <a href="#directions" class="btn-gold" style="display: inline-block;">Записаться на коврик</a>
             </div>
         </div>
     </section>
@@ -1573,27 +1589,27 @@
             
             <div class="gallery-grid">
                 <div class="gallery-item item-1">
-                    <img src="https://s6.iimage.su/s/02/g0ucZYOxqzEEsjjL9ttr7QF6EeTA36zeapI6V8KPM.png" alt="Студия" class="gallery-img">
+                    <img src="https://s6.iimage.su/s/02/g0ucZYOxqzEEsjjL9ttr7QF6EeTA36zeapI6V8KPM.png" alt="Студия" class="gallery-img" loading="lazy">
                     <span class="gallery-desc">Камерный зал</span>
                 </div>
                 <div class="gallery-item item-2">
-                    <img src="https://s6.iimage.su/s/02/gQy2dBixC4OEjVq2zsc4JvOH7DQhHsFI35MsgIoOs.png" alt="Оборудование" class="gallery-img">
+                    <img src="https://s6.iimage.su/s/02/gQy2dBixC4OEjVq2zsc4JvOH7DQhHsFI35MsgIoOs.png" alt="Оборудование" class="gallery-img" loading="lazy">
                     <span class="gallery-desc">Премиум реквизит</span>
                 </div>
                 <div class="gallery-item item-3">
-                    <img src="https://s6.iimage.su/s/02/gOnBvERxwQBzul46vqO0wn768P0ojMNOcXfBYzOSQ.png" alt="Коврики" class="gallery-img">
+                    <img src="https://s6.iimage.su/s/02/gOnBvERxwQBzul46vqO0wn768P0ojMNOcXfBYzOSQ.png" alt="Коврики" class="gallery-img" loading="lazy">
                     <span class="gallery-desc">Зона релаксации</span>
                 </div>
                 <div class="gallery-item item-4">
-                    <img src="https://s6.iimage.su/s/02/gkeyHSBxVnHdLLaFtrHTcC860MAcJE3AZehauookE.png" alt="Интерьер" class="gallery-img">
+                    <img src="https://s6.iimage.su/s/02/gkeyHSBxVnHdLLaFtrHTcC860MAcJE3AZehauookE.png" alt="Интерьер" class="gallery-img" loading="lazy">
                     <span class="gallery-desc">Премиум атмосфера</span>
                 </div>
                 <div class="gallery-item item-5">
-                    <img src="https://s6.iimage.su/s/02/g0rg470xoDthUQ54wXrkUAv9aAq24E1qqgKbJ0zpY.png" alt="Тренировка" class="gallery-img">
+                    <img src="https://s6.iimage.su/s/02/g0rg470xoDthUQ54wXrkUAv9aAq24E1qqgKbJ0zpY.png" alt="Тренировка" class="gallery-img" loading="lazy">
                     <span class="gallery-desc">Индивидуальный подход</span>
                 </div>
                 <div class="gallery-item item-6">
-                    <img src="https://s6.iimage.su/s/02/gOd6NH2xczRMBHqX7wJq1n4jNbvXMJSRrtWD9aDyE.png" alt="Атмосфера" class="gallery-img">
+                    <img src="https://s6.iimage.su/s/02/gOd6NH2xczRMBHqX7wJq1n4jNbvXMJSRrtWD9aDyE.png" alt="Атмосфера" class="gallery-img" loading="lazy"> 
                     <span class="gallery-desc">Внимание к деталям</span>
                 </div>
             </div>
@@ -1766,7 +1782,7 @@
                 <!-- Изящная кнопка мгновенного перехода в DIKIDI -->
                 <div style="grid-column: span 2; width: 100%; text-align: center;">
                     <a href="https://dikidi.net/ru/profile/tvoe_dvizhenie_1781614" target="_blank" style="display: block; width: 100%; padding: 14px; border: 1px dashed var(--accent-gold); color: var(--accent-gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; transition: var(--transition-silk); background-color: transparent;">
-                        Самостоятельный выбор в DIKIDI →
+                        Самостоятельный выбор времени в DIKIDI →
                     </a>
                 </div>
 
